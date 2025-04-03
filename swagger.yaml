@@ -1,121 +1,77 @@
 openapi: 3.0.0
 info:
   title: API - Mapa Istmo
-  description: API pública que expone capas geoespaciales del Istmo de Tehuantepec.
   version: 1.0.0
+  description: |
+    API pública que expone capas geoespaciales del Istmo de Tehuantepec desde una base de datos PostgreSQL/PostGIS.  
+    Las capas disponibles incluyen puntos, líneas y polígonos como aeropuertos, puertos, rutas y coberturas de red.  
+    Los resultados se devuelven en formato GeoJSON.
 
 servers:
   - url: https://api-mapa-istmo.onrender.com
 
 paths:
-  /api/capas/aeropuertos:
+  /api/capas/{nombre}:
     get:
-      summary: Obtener capa de aeropuertos
-      description: Devuelve un GeoJSON con todos los aeropuertos disponibles.
-      responses:
-        '200':
-          description: OK
+      summary: Obtener datos de una capa geoespacial
+      description: |
+        Devuelve los datos de la capa indicada por el nombre en formato GeoJSON.  
+        Soporta paginación con los parámetros `page` y `limit`.
 
-  /api/capas/puertos:
-    get:
-      summary: Obtener capa de puertos
-      description: Devuelve un GeoJSON con los puertos registrados.
+        Ejemplo:  
+        `/api/capas/red_att_4g?page=1&limit=1000`
+      parameters:
+        - name: nombre
+          in: path
+          required: true
+          description: Nombre de la capa a consultar (por ejemplo: `aeropuertos`, `rutas_ffcc`, `zonaciit`)
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          description: Página de resultados (por defecto 1)
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          description: Cantidad de registros por página (por defecto 1000)
+          schema:
+            type: integer
+            default: 1000
       responses:
         '200':
-          description: OK
-
-  /api/capas/cruces_fronterizos:
-    get:
-      summary: Obtener cruces fronterizos
-      description: Devuelve puntos de cruces fronterizos.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/estaciones_ffcc:
-    get:
-      summary: Obtener estaciones de ferrocarril
-      description: Devuelve puntos con las estaciones de FFCC.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/podebis:
-    get:
-      summary: Obtener puntos de DEBIS
-      description: Devuelve polígonos de PODEBIS.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/zonaciit:
-    get:
-      summary: Obtener zonas CIIT
-      description: Devuelve polígonos que conforman la zona CIIT.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/red_att_4g:
-    get:
-      summary: Obtener red ATT 4G
-      description: Devuelve cobertura de red ATT 4G.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/red_telcel_4g:
-    get:
-      summary: Obtener red Telcel 4G
-      description: Devuelve cobertura de red Telcel 4G.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/red_movistar_2g:
-    get:
-      summary: Obtener red Movistar 2G
-      description: Devuelve cobertura de red Movistar 2G.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/rutas_aereo:
-    get:
-      summary: Obtener rutas aéreas
-      description: Devuelve líneas que representan rutas de vuelo.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/rutas_maritimo:
-    get:
-      summary: Obtener rutas marítimas
-      description: Devuelve rutas marítimas en formato GeoJSON.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/rutas_ffcc:
-    get:
-      summary: Obtener rutas ferroviarias
-      description: Devuelve las rutas del ferrocarril del Istmo.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/rutas_carretera:
-    get:
-      summary: Obtener rutas carreteras
-      description: Devuelve líneas que representan carreteras.
-      responses:
-        '200':
-          description: OK
-
-  /api/capas/lineasistmo:
-    get:
-      summary: Obtener línea del Istmo
-      description: Devuelve líneas estratégicas del Istmo de Tehuantepec.
-      responses:
-        '200':
-          description: OK
+          description: GeoJSON con los datos de la capa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: FeatureCollection
+                  features:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: Feature
+                        geometry:
+                          type: object
+                        properties:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nombre:
+                              type: string
+                            tipo:
+                              type: string
+                            categoria:
+                              type: string
+        '500':
+          description: Error al consultar la capa
