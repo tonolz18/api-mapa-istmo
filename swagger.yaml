@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: API - Mapa Istmo
+  description: API pública que expone capas geoespaciales del Istmo de Tehuantepec.
+  version: 1.0.0
+
+servers:
+  - url: https://api-mapa-istmo.onrender.com
+
+paths:
+  /api/capas/aeropuertos:
+    get:
+      summary: Obtener capa de aeropuertos
+      description: Devuelve un GeoJSON con todos los aeropuertos disponibles.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/puertos:
+    get:
+      summary: Obtener capa de puertos
+      description: Devuelve un GeoJSON con los puertos registrados.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/cruces_fronterizos:
+    get:
+      summary: Obtener cruces fronterizos
+      description: Devuelve puntos de cruces fronterizos.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/estaciones_ffcc:
+    get:
+      summary: Obtener estaciones de ferrocarril
+      description: Devuelve puntos con las estaciones de FFCC.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/podebis:
+    get:
+      summary: Obtener puntos de DEBIS
+      description: Devuelve polígonos de PODEBIS.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/zonaciit:
+    get:
+      summary: Obtener zonas CIIT
+      description: Devuelve polígonos que conforman la zona CIIT.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/red_att_4g:
+    get:
+      summary: Obtener red ATT 4G
+      description: Devuelve cobertura de red ATT 4G.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/red_telcel_4g:
+    get:
+      summary: Obtener red Telcel 4G
+      description: Devuelve cobertura de red Telcel 4G.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/red_movistar_2g:
+    get:
+      summary: Obtener red Movistar 2G
+      description: Devuelve cobertura de red Movistar 2G.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/rutas_aereo:
+    get:
+      summary: Obtener rutas aéreas
+      description: Devuelve líneas que representan rutas de vuelo.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/rutas_maritimo:
+    get:
+      summary: Obtener rutas marítimas
+      description: Devuelve rutas marítimas en formato GeoJSON.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/rutas_ffcc:
+    get:
+      summary: Obtener rutas ferroviarias
+      description: Devuelve las rutas del ferrocarril del Istmo.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/rutas_carretera:
+    get:
+      summary: Obtener rutas carreteras
+      description: Devuelve líneas que representan carreteras.
+      responses:
+        '200':
+          description: OK
+
+  /api/capas/lineasistmo:
+    get:
+      summary: Obtener línea del Istmo
+      description: Devuelve líneas estratégicas del Istmo de Tehuantepec.
+      responses:
+        '200':
+          description: OK
