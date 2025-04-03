@@ -1,13 +1,13 @@
 const express = require('express');
-const router = express.Router();
 const pool = require('../db');
+const verifyToken = require('../middlewares/verifyToken');
 
-// Ruta con paginación para cualquier capa
-router.get('/:nombre', async (req, res) => {
+const router = express.Router();
+
+router.get('/:nombre', verifyToken, async (req, res) => {
   const nombreCapa = req.params.nombre;
-  const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 1000; // puedes ajustar el límite según rendimiento
-  const offset = (page - 1) * limit;
+  const limit = parseInt(req.query.limit) || 1000;
+  const offset = ((parseInt(req.query.page) || 1) - 1) * limit;
 
   try {
     const resultado = await pool.query(`
@@ -31,13 +31,9 @@ router.get('/:nombre', async (req, res) => {
 
     res.json({
       type: 'FeatureCollection',
-      features,
-      page,
-      limit
+      features
     });
-
   } catch (err) {
-    console.error('❌ Error al consultar capa:', nombreCapa, err.message);
     res.status(500).json({ error: `No se pudo obtener la capa '${nombreCapa}'` });
   }
 });
