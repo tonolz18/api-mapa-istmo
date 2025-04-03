@@ -1,0 +1,7 @@
+CREATE EXTENSION IF NOT EXISTS postgis;
+
+CREATE TABLE IF NOT EXISTS aeropuertos (
+  id SERIAL PRIMARY KEY,
+  nombre TEXT,
+  geom GEOMETRY(Point, 4326)
+);

@@ -1,0 +1,17 @@
+var data_rutas_maritimo = 
+{
+    "type":"FeatureCollection",
+    "name":"data_rutasmaritimo",
+    "crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},
+    "features":[
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"SALINA CRUZ, OAX.","DESTINO":"MANZANILLO, COL.","OTROS FLUI":"2,507.00","USD":"1,938.00","MXN":"34,225.08","DISTANCIA":"1,105.09 Km","COMENTARIO":"Unicamente traslado sin recolección o entrega"},"geometry":{"type":"MultiLineString","coordinates":[[[-95.1907185,16.1706802],[-104.3027211,19.0592882]]]}},
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"SALINA CRUZ, OAX.","DESTINO":"LOS ANGELES EUA","OTROS FLUI":"0","USD":"2,378.00","MXN":"41,995.50","DISTANCIA":"3,359.67 Km","COMENTARIO":"Unicamente traslado sin recolección o entrega"},"geometry":{"type":"MultiLineString","coordinates":[[[-95.1907185,16.1706802],[-118.2815656,33.74056673]]]}},
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"VERACRUZ, VER","DESTINO":"COATZACOALCOS, VER.","OTROS FLUI":"0","USD":"-","MXN":"-","DISTANCIA":"314 km","COMENTARIO":"Fuente: Google"},"geometry":{"type":"MultiLineString","coordinates":[[[-96.14519373,19.20905029],[-94.41208001,18.14283934]]]}},
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"CAMPECHE","DESTINO":"COATZACOALCOS, VER.","OTROS FLUI":"0","USD":"-","MXN":"-","DISTANCIA":"562 km","COMENTARIO":"Unicamente traslado sin recolección o entrega"},"geometry":{"type":"MultiLineString","coordinates":[[[-90.53695925,19.84585848],[-94.41208001,18.14283934]]]}},
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"COATZACOALCOS, VER.","DESTINO":"HOUSTON","OTROS FLUI":"255,875.00","USD":"2319.25","MXN":"40,957.96","DISTANCIA":"1312.85 km","COMENTARIO":"Unicamente traslado sin recolección o entrega"},"geometry":{"type":"MultiLineString","coordinates":[[[-94.41208001,18.14283934],[-95.0251018,29.6128771]]]}},
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"COATZACOALCOS, VER.","DESTINO":"NEW ORLEANS","OTROS FLUI":"0","USD":"2493.5","MXN":"44,035.21","DISTANCIA":"1523.12 km","COMENTARIO":"Unicamente traslado sin recolección o entrega"},"geometry":{"type":"MultiLineString","coordinates":[[[-94.41208001,18.14283934],[-90.0613459,29.9371446]]]}},
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"COATZACOALCOS, VER.","DESTINO":"PANAMA CITY","OTROS FLUI":"0","USD":"4743.19","MXN":"83,764.74","DISTANCIA":"1596.82 km","COMENTARIO":"Unicamente traslado sin recolección o entrega"},"geometry":{"type":"MultiLineString","coordinates":[[[-94.41208001,18.14283934],[-85.7305826,30.183468]]]}},
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"COATZACOALCOS, VER.","DESTINO":"TAMPA","OTROS FLUI":"0","USD":"5808.1","MXN":"102,571.05","DISTANCIA":"1637.06 km","COMENTARIO":"Unicamente traslado sin recolección o entrega"},"geometry":{"type":"MultiLineString","coordinates":[[[-94.41208001,18.14283934],[-82.4374216,27.9346891]]]}},
+        {"type":"Feature","properties":{"Tipo": "RutaMaritima","ORIGEN":"COATZACOALCOS, VER.","DESTINO":"BALTIMORE","OTROS FLUI":"0","USD":"2848.8","MXN":"50,309.81","DISTANCIA":"3320.96 km","COMENTARIO":"Unicamente traslado sin recolección o entrega"},"geometry":{"type":"MultiLineString","coordinates":[[[-94.41208001,18.14283934],[-76.6098297,39.2860726]]]}}
+    ]
+}
