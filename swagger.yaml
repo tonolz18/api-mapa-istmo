@@ -1,18 +1,9 @@
 openapi: 3.0.0
 
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
-
 info:
   title: API - Mapa Istmo
   version: 1.0.0
-  description: API segura con login y JWT para consultar capas geográficas.
+  description: API segura con login y JWT para consultar capas geográficas del Istmo de Tehuantepec.
 
 servers:
   - url: https://api-mapa-istmo.onrender.com
@@ -36,6 +27,8 @@ paths:
       responses:
         '200':
           description: Token generado correctamente
+        '401':
+          description: Credenciales inválidas
 
   /api/capas/{nombre}:
     get:
@@ -47,11 +40,22 @@ paths:
           required: true
           schema:
             type: string
+          description: Nombre de la capa (ej. aeropuertos, puertos, rutas_ffcc, etc.)
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: Página de resultados (paginación opcional)
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Número máximo de elementos por página
       security:
         - bearerAuth: []
       responses:
         '200':
-          description: Datos de la capa
+          description: Datos de la capa en formato GeoJSON
         '401':
           description: No autorizado
 
