@@ -7,7 +7,7 @@ const usuarios = [
   {
     id: 1,
     username: "admin",
-    password: "$2b$10$uR.2nRHUZMXbFxPEnmOJSe7M.mDZ/7Qz1H5Lep/mTxYYqgLdDPqTy" // '1234' encriptado
+    password: "$2b$10$07WO1/awK0Rq9QDGz3hcf.o/9TwmNOaOrOYHKrF49RnJLmF9fB9Eq" // '1234' encriptado
   }
 ];
 
