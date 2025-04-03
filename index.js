@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-<<<<<<< HEAD
 const { Pool } = require("pg");
 require("dotenv").config();
 
@@ -29,16 +28,11 @@ app.get("/api/etiquetas", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`🚀 Servidor API escuchando en http://localhost:${PORT}`);
-=======
+});
+
 const capasRoutes = require('./routes/capas');
 app.use('/api/capas', capasRoutes);
 
-app.use(cors());
-app.use("/api/capas", capasRoutes);
-
-app.listen(3000, () => {
-  console.log("Servidor escuchando en http://localhost:3000");
->>>>>>> f6ee8ac (Agregadas rutas dinámicas para capas geoespaciales)
-});
