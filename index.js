@@ -1,12 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
 require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Cargar documento de Swagger
+const swaggerDocument = YAML.load('./swagger.yaml');
+
+// Configurar conexión a PostgreSQL
 const pool = new Pool({
   host: process.env.PGHOST,
   user: process.env.PGUSER,
@@ -15,6 +21,7 @@ const pool = new Pool({
   port: process.env.PGPORT,
 });
 
+// Rutas principales
 app.get("/", (req, res) => {
   res.send("🌍 API Mapa Istmo conectada");
 });
@@ -28,25 +35,19 @@ app.get("/api/etiquetas", async (req, res) => {
   }
 });
 
+// 👉 IMPORTAR rutas después de definir middleware y antes de usarlas
+const capasRouter = require('./routes/capas');
+const authRouter = require('./routes/auth'); // si tienes auth.js, si no comenta esta línea
+
+// Usar las rutas
 app.use('/api/capas', capasRouter);
-app.use('/api/auth', authRouter);
+app.use('/api/auth', authRouter); // si no tienes auth aún, comenta esta línea
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// Puerto
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log(`🚀 Servidor API escuchando en http://localhost:${PORT}`);
 });
-
-
-const capasRoutes = require('./routes/capas');
-app.use('/api/capas', capasRoutes);
-
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./swagger.yaml');
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
 
 
