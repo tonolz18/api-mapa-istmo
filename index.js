@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const pool = new Pool({
   host: process.env.PGHOST,
@@ -27,11 +28,16 @@ app.get("/api/etiquetas", async (req, res) => {
   }
 });
 
+app.use('/api/capas', capasRouter);
+app.use('/api/auth', authRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor API escuchando en http://localhost:${PORT}`);
 });
+
 
 const capasRoutes = require('./routes/capas');
 app.use('/api/capas', capasRoutes);
